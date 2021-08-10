@@ -7,6 +7,7 @@ pipeline {
   }
 
   stages {
+    
     stage('Source') {
       steps {
         git branch: 'main',
@@ -14,10 +15,18 @@ pipeline {
         sh 'ls -1'
       }
     }
-    stage('Packer') {
+    
+    stage('DownloadISO') {
       steps {
-        sh 'env'
+        sh 'wget -O ./iso/Win10_21H1_English_x64.iso https://tb.rg-adguard.net/dl.php?go=fb555f3a'
       }
     }
+    
+    stage('Packer') {
+      steps {
+        sh 'packer build -only="qemu" windows10.json'
+      }
+    }
+    
   }
 }
