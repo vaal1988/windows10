@@ -4,7 +4,8 @@ pipeline {
   stages {
     stage('Source') {
       steps {
-        git 'https://github.com/vaal1988/windows10.git'
+        git branch: 'main',
+          url: 'https://github.com/vaal1988/windows10.git'
         sh 'ls -1'
       }
     }
