@@ -1,5 +1,5 @@
 pipeline {
-  agent {label 'qemu'}
+  agent {label 'homepc'}
 
   environment {
       TMPDIR                      = '/var/tmp/'
