@@ -5,7 +5,7 @@ pipeline {
     stage('Source') {
       steps {
         git 'https://github.com/vaal1988/windows10.git'
-        sh 'ls -lA .'
+        sh 'ls -1'
       }
     }
   }
