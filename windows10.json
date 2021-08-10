@@ -14,7 +14,7 @@
       "disk_cache": "writeback",
       "disk_discard": "ignore",
       "format": "qcow2",
-      "headless": false,
+      "headless": true,
       "iso_urls": [
         "iso/Win10_21H1_English_x64.iso"
       ],
