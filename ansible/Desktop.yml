@@ -1,0 +1,15 @@
+- name: "Change {{ item.name }}"
+  win_regedit:
+    path: "{{ item.path }}"
+    name: "{{ item.name }}"
+    data: "{{ item.data }}"
+    type: dword
+    state: present
+    hive: C:\Users\Default\NTUSER.dat
+  loop:
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel', name: '{20D04FE0-3AEA-1069-A2D8-08002B30309D}', data: '0' }
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', name: 'ShowTaskViewButton', data: '0' }
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', name: 'ShowCortanaButton', data: '0' }
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People', name: 'PeopleBand', data: '0' }
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\Search', name: 'SearchboxTaskbarMode', data: '1' }
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\PenWorkspace', name: 'PenWorkspaceButtonDesiredVisibility', data: '0' }

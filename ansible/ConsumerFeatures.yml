@@ -1,0 +1,68 @@
+- name: DisableSoftLanding
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\CloudContent
+    name: DisableEdgeDesktopShortcutCreation
+    data: 1
+    type: dword
+
+- name: DisableWindowsSpotlightFeatures
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\CloudContent
+    name: DisableEdgeDesktopShortcutCreation
+    data: 1
+    type: dword
+
+- name: DisableWindowsConsumerFeatures
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\CloudContent
+    name: DisableEdgeDesktopShortcutCreation
+    data: 1
+    type: dword
+
+- name: DoNotShowFeedbackNotifications
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\DataCollection
+    name: DisableEdgeDesktopShortcutCreation
+    data: 1
+    type: dword
+
+- name: AllowSuggestedAppsInWindowsInkWorkspace
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\WindowsInkWorkspace
+    name: DisableEdgeDesktopShortcutCreation
+    data: 0
+    type: dword
+
+- name: Remove Subscriptions HKLM
+  win_regedit:
+    path: HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\Subscriptions
+    state: absent
+    delete_key: yes
+    hive: C:\Users\Default\NTUSER.dat
+
+- name: Remove SuggestedApps HKLM
+  win_regedit:
+    path: HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\SuggestedApps
+    state: absent
+    delete_key: yes
+    hive: C:\Users\Default\NTUSER.dat
+
+# for default user
+
+- name: "Change {{ item.name }}"
+  win_regedit:
+    path: "{{ item.path }}"
+    name: "{{ item.name }}"
+    data: "{{ item.data }}"
+    type: dword
+    state: present
+    hive: C:\Users\Default\NTUSER.dat
+  loop:
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', name: 'ContentDeliveryAllowed', data: '0' }
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', name: 'OemPreInstalledAppsEnabled', data: '0' }
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', name: 'PreInstalledAppsEnabled', data: '0' }
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', name: 'PreInstalledAppsEverEnabled', data: '0' }
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', name: 'SilentInstalledAppsEnabled', data: '0' }
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', name: 'SoftLandingEnabled', data: '0' }
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', name: 'SubscribedContentEnabled', data: '0' }
+    - { path: 'HKLM:\ANSIBLE\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', name: 'SystemPaneSuggestionsEnabled', data: '0' }

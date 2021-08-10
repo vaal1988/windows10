@@ -1,0 +1,31 @@
+- name: LayoutModification
+  win_copy:
+    content: |
+      <LayoutModificationTemplate xmlns:defaultlayout="http://schemas.microsoft.com/Start/2014/FullDefaultLayout" xmlns:start="http://schemas.microsoft.com/Start/2014/StartLayout" Version="1" xmlns="http://schemas.microsoft.com/Start/2014/LayoutModification">
+        <LayoutOptions StartTileGroupCellWidth="6" />
+        <DefaultLayoutOverride>
+          <StartLayoutCollection>
+            <defaultlayout:StartLayout GroupCellWidth="6">
+            </defaultlayout:StartLayout>
+          </StartLayoutCollection>
+        </DefaultLayoutOverride>
+      </LayoutModificationTemplate>
+    dest: C:\Users\Default\AppData\Local\Microsoft\Windows\Shell\LayoutModification.xml
+
+- name: Change default StartLayout for new users
+  win_regedit:
+    path: HKLM:\ANSIBLE\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
+    name: LanguageList
+    data: powershell.exe -command "Import-StartLayout -layoutpath C:\Users\Default\AppData\Local\Microsoft\Windows\Shell\LayoutModification.xml -Mountpath C:\"
+    type: string
+    state: present
+    hive: C:\Users\Default\NTUSER.dat
+
+- name: NoPinningStoreToTaskbar
+  win_regedit:
+    path: HKLM:\ANSIBLE\Software\Policies\Microsoft\Windows\Explorer
+    name: NoPinningStoreToTaskbar
+    data: 1
+    type: dword
+    state: present
+    hive: C:\Users\Default\NTUSER.dat

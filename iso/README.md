@@ -1,0 +1,1 @@
+Win10_21H1_English_x64.iso: https://tb.rg-adguard.net/dl.php?go=fb555f3a
