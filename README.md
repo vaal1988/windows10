@@ -15,7 +15,3 @@ export TMPDIR="/var/tmp"
 export PACKER_IMAGES_OUTPUT_DIR="/var/tmp/"
 packer build -only="qemu" windows10.json
 ```
-publish:
- ```bash
-vagrant cloud publish username/windows10 1.0.0 libvirt /var/tmp/windows10.box --description "windows10" --release
-```
