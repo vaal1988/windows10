@@ -18,7 +18,7 @@ pipeline {
     
     stage('DownloadISO') {
       steps {
-        sh 'wget -O ./iso/Win10_21H1_English_x64.iso https://tb.rg-adguard.net/dl.php?go=fb555f3a'
+        sh 'wget -qO ./iso/Win10_21H1_English_x64.iso https://tb.rg-adguard.net/dl.php?go=fb555f3a'
       }
     }
     
