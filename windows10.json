@@ -34,7 +34,14 @@
   ],
   "provisioners": [
     { "type": "sleep", "duration": "2m" },
-    { "type": "powershell", "inline": ["Set Execution-Policy  RemoteSigned -Force"] },
+    {
+      "type": "powershell",
+      "inline": [
+        "Set-ExecutionPolicy RemoteSigned -Force",
+        "Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force",
+        "Install-Module -Name PSWindowsUpdate -Force"
+      ]
+    },
     {
       "type": "shell-local",
       "command": "ansible-playbook --extra-vars='ansible_user=Admin ansible_password=password' -i 127.0.0.1, ansible/windows10_main.yml",

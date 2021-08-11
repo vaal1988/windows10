@@ -19,8 +19,10 @@
 
   - include: SMB1.yml
   - include: ConsumerFeatures.yml
+
   - include: Desktop.yml
   - include: LayoutModification.yml
+  
   - include: OneDrive.yml
   - include: Remove-AppxPackage.yml
 

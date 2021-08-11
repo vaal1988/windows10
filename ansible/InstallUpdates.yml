@@ -1,11 +1,5 @@
 # install updates
 
-- name: wait for system to become reachable over WinRM
-  wait_for_connection:
-    delay: 60
-    sleep: 15
-    timeout: 900
-
 - name: start wuauserv
   win_service:
     name: wuauserv
@@ -22,31 +16,11 @@
     reboot_timeout: 6000
   when: update_search_result.reboot_required
 
-- name: start wuauserv
-  win_service:
-    name: wuauserv
-    state: started
+- name: Install-WindowsUpdate
+  win_shell: Install-WindowsUpdate -NotCategory "Drivers" -NotTitle "OneDrive" -AcceptAll -AutoReboot
 
-- name: Install all security, critical, and rollup updates
-  win_updates:
-    category_names: 
-      - Application
-      - Connectors
-      - CriticalUpdates
-      - DefinitionUpdates
-      - DeveloperKits
-      - FeaturePacks
-      - Guidance
-      - SecurityUpdates
-      - ServicePacks
-      - Tools
-      - UpdateRollups
-      - Updates
-    reboot: True
-    reboot_timeout: 3600
-
-- name: reboot, if needed
-  win_reboot:
-    pre_reboot_delay: 300
-    reboot_timeout: 6000
-  when: update_search_result.reboot_required
+- name: wait for system to become reachable over WinRM
+  wait_for_connection:
+    delay: 60
+    sleep: 15
+    timeout: 900

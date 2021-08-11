@@ -1,4 +1,4 @@
-- name: "Change {{ item.name }}"
+- name: Desktop Taskbar
   win_regedit:
     path: "{{ item.path }}"
     name: "{{ item.name }}"
