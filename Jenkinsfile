@@ -35,7 +35,8 @@ pipeline {
 
     stage('CleanUP') {
       steps {
-        sh 'sudo rm -rf /var/tmp/windows10/'
+        sh 'rm -rf /var/tmp/windows10/'
+        sh 'rm -f ./iso/Win10_21H1_English_x64.iso'
       }
     }
 

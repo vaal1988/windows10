@@ -18,6 +18,7 @@
 
 - name: Install-WindowsUpdate
   win_shell: Install-WindowsUpdate -NotCategory "Drivers" -NotTitle "OneDrive" -AcceptAll -AutoReboot
+  become: yes
 
 - name: wait for system to become reachable over WinRM
   wait_for_connection:
