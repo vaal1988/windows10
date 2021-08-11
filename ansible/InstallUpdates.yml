@@ -5,7 +5,6 @@
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
     Install-WindowsUpdate -NotCategory "Drivers" -NotTitle "OneDrive" -MicrosoftUpdate -AcceptAll -AutoReboot
   become: yes
-  become_flags: logon_type=batch
 
 - name: wait for system to become reachable over WinRM
   wait_for_connection:
