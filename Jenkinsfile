@@ -21,7 +21,7 @@ pipeline {
       }
     }
     
-    stage('Packer') {
+    stage('Build') {
       steps {
         sh 'packer build -only="qemu" windows10.json'
       }
