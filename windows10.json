@@ -16,7 +16,7 @@
       "format": "qcow2",
       "headless": true,
       "iso_urls": [
-        "iso/Win10_21H1_English_x64.iso"
+        "/home/vaal/Downloads/Win10_21H1_English_x64.iso"
       ],
       "iso_checksum": "78aa5fa0fd332ee0822ef5a533cd2cfe12333274",
       "shutdown_command": "C:\\Windows\\Temp\\sysprep.bat",
@@ -34,12 +34,6 @@
   ],
   "provisioners": [
     { "type": "sleep", "duration": "2m" },
-    {
-      "type": "powershell",
-      "inline": [
-        "Set-ExecutionPolicy RemoteSigned -Force"
-      ]
-    },
     {
       "type": "shell-local",
       "command": "ansible-playbook --extra-vars='ansible_user=Admin ansible_password=password' -i 127.0.0.1, ansible/windows10_main.yml",

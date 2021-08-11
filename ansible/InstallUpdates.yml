@@ -17,7 +17,9 @@
   when: update_search_result.reboot_required
 
 - name: Install-WindowsUpdate
-  win_command: powershell.exe -ExecutionPolicy Bypass -NoProfile -Command 'Install-WindowsUpdate -NotCategory "Drivers" -NotTitle "OneDrive" -MicrosoftUpdate -AcceptAll -AutoReboot'
+  win_shell: |
+    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
+    Install-WindowsUpdate -NotCategory "Drivers" -NotTitle "OneDrive" -MicrosoftUpdate -AcceptAll -AutoReboot
 
 - name: wait for system to become reachable over WinRM
   wait_for_connection:
