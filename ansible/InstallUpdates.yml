@@ -1,5 +1,22 @@
 # install updates
 
+- name: wait for system to become reachable over WinRM
+  wait_for_connection:
+    delay: 600
+    sleep: 15
+    timeout: 1200
+
+- name: search for Windows updates 
+  win_updates:
+    state: searched
+  register: update_search_result
+
+- name: reboot, if needed
+  win_reboot:
+    pre_reboot_delay: 300
+    reboot_timeout: 6000
+  when: update_search_result.reboot_required
+
 - name: Install-WindowsUpdate
   win_shell: |
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
@@ -16,9 +33,3 @@
     pre_reboot_delay: 300
     reboot_timeout: 6000
   when: update_search_result.reboot_required
-
-- name: wait for system to become reachable over WinRM
-  wait_for_connection:
-    delay: 600
-    sleep: 15
-    timeout: 1200
