@@ -7,10 +7,10 @@
     ansible_winrm_operation_timeout_sec: 1000 
     ansible_winrm_read_timeout_sec: 1000
 
-    ansible_become_user: "{{ ansible_user }}"
-    ansible_become_password: "{{ ansible_password }}"
     ansible_become_method: runas
     ansible_become_flags: logon_type=batch
+    ansible_become_user: "{{ ansible_user }}"
+    ansible_become_password: "{{ ansible_password }}"
 
   tasks:
 
