@@ -9,6 +9,7 @@
 
     ansible_become_method: runas
     ansible_become_flags: logon_type=batch
+    ansible_become_user: "{{ ansible_user }}"
 
   tasks:
 
