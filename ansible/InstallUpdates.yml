@@ -6,8 +6,9 @@
     Install-WindowsUpdate -NotCategory "Drivers" -NotTitle "OneDrive" -MicrosoftUpdate -AcceptAll -AutoReboot
   become: yes
 
+
 - name: wait for system to become reachable over WinRM
   wait_for_connection:
-    delay: 60
+    delay: 600
     sleep: 15
     timeout: 900
