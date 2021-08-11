@@ -15,11 +15,12 @@ pipeline {
       }
     }
     
-    // stage('DownloadISO') {
-    //   steps {
-    //     sh 'wget -qO ./iso/Win10_21H1_English_x64.iso https://tb.rg-adguard.net/dl.php?go=fb555f3a'
-    //   }
-    // }
+    stage('DownloadISO') {
+      steps {
+        // sh 'wget -qO ./iso/Win10_21H1_English_x64.iso https://tb.rg-adguard.net/dl.php?go=fb555f3a'
+        sh 'ansible localhost -m get_url -a "url=https://tb.rg-adguard.net/dl.php?go=fb555f3a dest=./iso/Win10_21H1_English_x64.iso"'
+      }
+    }
     
     stage('Build') {
       steps {
