@@ -3,7 +3,7 @@
 - name: Install-WindowsUpdate
   win_shell: |
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
-    Install-WindowsUpdate -NotCategory "Drivers" -NotTitle "OneDrive" -MicrosoftUpdate -IgnoreReboot
+    Install-WindowsUpdate -NotCategory "Drivers" -NotTitle "OneDrive" -MicrosoftUpdate -AcceptAll -IgnoreReboot
   become: yes
 
 - name: search for Windows updates 
