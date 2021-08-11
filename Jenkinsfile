@@ -22,11 +22,23 @@ pipeline {
       }
     }
     
-    stage('Packer') {
+    stage('Build') {
       steps {
         sh 'packer build -only="qemu" windows10.json'
       }
     }
-    
+
+    stage('Test') {
+      steps {
+        sh 'sudo mv --force /var/tmp/windows10/windows10 /var/lib/libvirt/images/windows10.qcow2'
+      }
+    }
+
+    stage('CleanUP') {
+      steps {
+        sh 'sudo rm -rf /var/tmp/windows10/'
+      }
+    }
+
   }
 }
