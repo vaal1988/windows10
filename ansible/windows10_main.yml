@@ -17,7 +17,7 @@
   - name: ping
     win_ping:
 
-#  - include: QemuGuestAgent.yml
+  - include: QemuGuestAgent.yml
 
   - include: Chocolatey.yml
 
