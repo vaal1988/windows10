@@ -38,7 +38,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'vagrant box add windows10 /var/tmp/windows10.box --provider libvirt'
+    //     sh 'vagrant box add windows10 /var/tmp/windows10.box --provider libvirt'
         sh 'vagrant up'
       }
     }
