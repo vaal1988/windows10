@@ -8,13 +8,14 @@ pipeline {
 
   stages {
 
-    // stage('PreCleanUP') {
-    //   steps {
-    //     sh 'vagrant box list | grep windows10 && vagrant box remove windows10 || exit 0'
-    //     sh 'rm -rf /var/tmp/windows10/'
-    //     sh 'rm -f /var/tmp/windows10.box'
-    //   }
-    // }
+    stage('PreCleanUP') {
+      steps {
+        sh 'vagrant box list | grep windows10 && vagrant box remove windows10 || exit 0'
+        sh 'sudo rm -f /var/lib/libvirt/images/windows10_vagrant_box_image*'
+        sh 'rm -rf /var/tmp/windows10/'
+        sh 'rm -f /var/tmp/windows10.box'
+      }
+    }
 
     stage('Source') {
       steps {
@@ -29,15 +30,15 @@ pipeline {
       }
     }
 
-    // stage('Build') {
-    //   steps {
-    //     sh 'packer build -only="qemu" windows10.json'
-    //   }
-    // }
+    stage('Build') {
+      steps {
+        sh 'packer build -only="qemu" windows10.json'
+      }
+    }
 
     stage('Test') {
       steps {
-        sh 'vagrant box add windows10 /var/tmp/windows10.box --provider libvirt || exit 0'
+        sh 'vagrant box add windows10 /var/tmp/windows10.box --provider libvirt'
         sh 'vagrant up'
       }
     }
@@ -45,10 +46,10 @@ pipeline {
     stage('CleanUP') {
       steps {
         sh 'vagrant destroy --force'
-        // sh 'vagrant box remove windows10'
-        // sh 'rm -rf /var/tmp/windows10/'
-        // sh 'rm -f ./iso/Win10_21H1_English_x64.iso'
-        // sh 'sudo rm -f /var/lib/libvirt/images/windows10_vagrant_box_*'
+        sh 'vagrant box remove windows10'
+        sh 'rm -rf /var/tmp/windows10/'
+        sh 'rm -f ./iso/Win10_21H1_English_x64.iso'
+        sh 'sudo rm -f /var/lib/libvirt/images/windows10_vagrant_box_image*'
       }
     }
 
