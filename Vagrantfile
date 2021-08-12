@@ -6,7 +6,7 @@ ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
 Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", inline: <<-SHELL
-  echo "========TEST========"
+  echo "========SUCCESS========"
   SHELL
 
   config.vm.define "windows10" do |config|
