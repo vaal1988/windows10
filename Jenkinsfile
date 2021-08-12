@@ -30,11 +30,11 @@ pipeline {
       }
     }
 
-    stage('Build') {
-      steps {
-        sh 'packer build -only="qemu" windows10.json'
-      }
-    }
+    // stage('Build') {
+    //   steps {
+    //     sh 'packer build -only="qemu" windows10.json'
+    //   }
+    // }
 
     stage('Test') {
       steps {
