@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   SHELL
 
   config.vm.define "windows10" do |config|
-  config.vm.box              = "test"
+  config.vm.box              = "windows10"
 
   config.vm.box_check_update = false
     config.vm.provider :libvirt do |v|
