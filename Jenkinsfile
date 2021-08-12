@@ -37,17 +37,19 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'vagrant box add windows10 /var/tmp/windows10.box --provider libvirt'
+        sh 'vagrant box add windows10 /var/tmp/windows10.box --provider libvirt || exit 0'
         sh 'vagrant up'
       }
     }
 
-    // stage('CleanUP') {
-    //   steps {
-    //     sh 'rm -rf /var/tmp/windows10/'
-    //     sh 'rm -f ./iso/Win10_21H1_English_x64.iso'
-    //   }
-    // }
+    stage('CleanUP') {
+      steps {
+        sh 'vagrant destroy --force'
+        // sh 'vagrant box remove windows10'
+        // sh 'rm -rf /var/tmp/windows10/'
+        // sh 'rm -f ./iso/Win10_21H1_English_x64.iso'
+      }
+    }
 
   }
 }
