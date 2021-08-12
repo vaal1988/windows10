@@ -42,9 +42,8 @@
     {
       "type": "powershell",
       "inline": [
-        "Dism /online /Cleanup-Image /StartComponentCleanup /ResetBase",
-        "Dism /online /Cleanup-Image /spsuperseded",
-        "Get-WindowsFeature | ? { $_.InstallState -eq 'Available' } | Uninstall-WindowsFeature -Remove",
+        "DISM /online /Cleanup-Image /StartComponentCleanup /ResetBase",
+        "DISM /online /Cleanup-Image /SPSuperseded",
         "Optimize-Volume -DriveLetter C -Defrag",
         "sdelete -z c:"
       ]
