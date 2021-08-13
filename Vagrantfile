@@ -5,12 +5,12 @@ ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
 
 Vagrant.configure("2") do |config|
 
-  config.vm.provision "shell", inline: <<-SHELL
-  echo "========SUCCESS========"
-  SHELL
+  # config.vm.provision "shell", inline: <<-SHELL
+  # echo "========SUCCESS========"
+  # SHELL
 
   config.vm.define "windows10" do |config|
- # config.vm.define "windows10", autostart: false do |config|
+  # config.vm.define "windows10", autostart: false do |config|
   config.vm.box              = "windows10"
 
   config.vm.box_check_update = false
