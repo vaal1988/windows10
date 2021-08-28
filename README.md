@@ -3,6 +3,7 @@
 clone repo:
  ```bash
 git clone https://github.com/vaal1988/windows10.git
+cd ./windows10
 ```
 
 download iso:
