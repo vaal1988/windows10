@@ -1,5 +1,5 @@
 pipeline {
-  agent {label 'gateway'}
+  agent {label 'vagrant'}
 
   environment {
       TMPDIR                      = '/var/tmp/'
